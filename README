@@ -1,10 +1,28 @@
 This is the SympyTeX package. It allows you to embed code, results of
 computations, and (sometimes!) plots from the Matplotlib software suite
 (http://www.sympy.org) into LaTeX documents.
+
 ====================================================================
 
-To use SympyTeX, you need the files sympytex.sty and sympytex.py. If those
-haven't been extracted from the .dtx file, you'll need to do:
+==USING THE PACKAGE==
+
+To use SympyTeX, you need the files
+  sympytex.sty
+  sympytex.py
+If those haven't been extracted from the .dtx file, you'll need  build
+the package (see below)
+
+
+====================================================================
+
+==BUILDING THE PACKAGE==
+
+To build the SympyTeX package you will need to install some extra LaTeX
+packages (makecmds.sty)
+
+    aptitude install texlive-latex-extra
+
+Then do:
 
   0. Run `latex sympytexpackage.ins'
 
@@ -22,6 +40,8 @@ pgf and tikz packages installed to typeset the figures.
 
 The file example.tex has, as you likely guessed, a bunch of examples
 showing you how this package works.
+
+==CREDITS==
 
 This works builds on a lot of work by others; in particular the work of
 Dan Drake <ddrake@member.ams.org> who created the sagetex package from which

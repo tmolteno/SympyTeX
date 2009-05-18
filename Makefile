@@ -17,5 +17,5 @@ clean:
 	rm -f sympytex.* example.s* rm sympytexpackage.dvi  sympytexpackage.aux
 
 dist:
-	tar -cf SympyTeX.tar sympytexpackage.ins sympytexpackage.dtx example.tex README TODO Makefile
+	tar -cf SympyTeX.tar sympytex.sty sympytex.py sympytexpackage.ins sympytexpackage.dtx example.tex README TODO Makefile
 	bzip2 -f SympyTeX.tar
