@@ -63,7 +63,6 @@ The rotation matrix is through an angle $\theta$ around the $z$-axis is
 Plotting works using the {\tt sympyplot} command. This takes a matplotlib figure as a parameter. Have a look at the example below.
 \begin{sympyblock}
 import matplotlib
-#matplotlib.use('PS')   # generate postscript output by default
 import matplotlib.pyplot as plt
 plt.matplotlib.rc('text', usetex = True)
 import pylab
@@ -71,9 +70,10 @@ fig = plt.figure()
 ax = fig.add_subplot(111)
 t = pylab.linspace(0,10,400)
 ax.plot(t, sin(3*t), '-',
-	t, sin(0.3*t**2), '--',
-	t, cos(t), '-.')
-ax.legend((r'$A^{\omega}$', r'$A^{2\omega}$', r'$A^{3\omega}$'), shadow = False, loc = (0.75, 0.1))
+    t, sin(0.3*t**2), '--',
+    t, cos(t), '-.')
+ax.legend((r'$A^{\omega}$', r'$A^{2\omega}$', r'$A^{3\omega}$'),
+    shadow = False, loc = (0.75, 0.1))
 ax.set_xlabel(r'$\gamma_1 + \gamma_2$', {'fontsize'   : 20 })
 ax.set_ylabel(r'$A^{n\omega}$ (dB)', {'fontsize'   : 20 })
 \end{sympyblock}
@@ -81,6 +81,7 @@ Here we're using matplotlib! So this sympytex package is really not quite named 
 
 \begin{figure}
 \sympyplot[width=\linewidth]{fig}
+\caption{The graph generated from {\tt \textbackslash sympyplot[width=\textbackslash linewidth]\{fig\}} }
 \end{figure}
 
 The syntax is
