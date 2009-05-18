@@ -1,0 +1,91 @@
+%% This is `sympytexpackage.ins', part of the sympytex package.
+%
+%% Copyright (C) 2009 by Tim Molteno <tim@physics.otago.ac.nz>
+%%
+%% This program is free software: you can redistribute it and/or modify
+%% it under the terms of the GNU General Public License as published by
+%% the Free Software Foundation, either version 2 of the License, or (at
+%% your option) any later version.
+%% 
+%% This program is distributed in the hope that it will be useful, but
+%% WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+%% General Public License for more details.
+%%
+%% You should have received a copy of the GNU General Public License
+%% along with this program.  If not, see <http://www.gnu.org/licenses/>
+
+\input docstrip.tex
+\keepsilent
+
+\usedir{tex/latex/sympytex}
+
+\declarepreamble\defaultpreamble
+
+This is a generated file.
+
+Copyright (C) 2009 by Tim Molteno <tim@physics.otago.ac.nz>
+
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 2 of the License, or (at your
+option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program.  If not, see <http://www.gnu.org/licenses/>
+
+\endpreamble
+
+% We use a name other than `sympytex' because when using the sympytex
+% package in a file called `foo.dtx', a file `foo.py' will be produced
+% -- and below, we generate a file called sympytex.py. Thus we use a name
+% other than `sympytex.dtx' so that building the documentation doesn't
+% clobber the very Python file we need to build the documentation!
+
+\generate{\file{sympytex.sty}{\from{sympytexpackage.dtx}{latex}}}
+
+
+% Some trickery to get triple quotes around the {pre,post}amble. This is
+% a modification of what the Docstrip manual suggests; their method
+% resulted in some bits being printed twice because, I think, of a
+% problem in \declare{pre,post}amble. At any rate, this gives us a
+% properly commented Python file with the same preamble as the .sty
+% file.
+
+\edef\defaultpreamble{"""^^J%
+          \defaultpreamble^^J%
+          """}
+\edef\defaultpostamble{"""^^J%
+          \defaultpostamble^^J%
+          """}
+
+\generate{\file{sympytex.py}{\from{sympytexpackage.dtx}{python}}}
+
+\obeyspaces
+\Msg{********************************************************************}
+\Msg{*                                                                  *}
+\Msg{* To finish the installation, move the following files             *}
+\Msg{* into directories searched by TeX and Python, respectively.       *}
+\Msg{*                                                                  *}
+\Msg{*     sympytex.sty                                                 *}
+\Msg{*     sympytex.py                                                  *}
+\Msg{*                                                                  *}
+\Msg{* See the documentation for complete installation details.         *}
+\Msg{*                                                                  *}
+\Msg{* To produce the documentation run the file sympytexpackage.dtx    *}
+\Msg{* through LaTeX. To produce the change history, run                *}
+\Msg{*                                                                  *}
+\Msg{* makeindex -s gglo.ist -o sympytexpackage.gls sympytexpackage.glo *}
+\Msg{*                                                                  *}
+\Msg{* and to get the regular index, do                                 *}
+\Msg{*                                                                  *}
+\Msg{* makeindex -s gind.ist -o sympytexpackage.ind sympytexpackage.idx *}
+\Msg{*                                                                  *}
+\Msg{********************************************************************}
+
+\endbatchfile
