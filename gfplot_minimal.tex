@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{sympytex}
+
+\usepackage{pgfplots}
+
+\title{SympyTeX pgfplots example}
+\author{Alexander Steppke}
+
+\begin{document}
+
+\maketitle
+
+\section{Plotting with PGF/TikZ in SympyTeX}
+To plot figures with SympyTeX besides the python matplotlib alternatively the LaTeX package pgfplots can be used. Pgfplots is using the PGF/TikZ package as a graphics backend. The main advantages are the fast output, as we do not need to create any external files and the good integration of pgfplots into LaTeX. A short example is given below.
+
+\begin{sympyblock}
+from numpy import linspace, sin
+time = linspace(0,6,200)
+values = sin(3*time)
+coordinates = ""
+for point in zip(time, values):
+  coordinates = coordinates + str(point)
+
+pgfplot = r"""
+\begin{tikzpicture}
+  \begin{axis}[xlabel=Time,ylabel=Amplitude]
+    \addplot[color=red,mark=x] coordinates { %s };
+  \end{axis}
+\end{tikzpicture}
+""" % (coordinates)
+
+\end{sympyblock}
+
+After calculating the datapoints we insert them into the string {\verb pgfplot } and output the string into our LaTeX document using {\verb \sympyplain{pgfplot} } in a figure environment.
+\begin{figure}
+  \centering
+  \sympyplain{pgfplot}
+  \caption{A simple plot with SympyTeX and pgfplots.}
+\end{figure}
+
+
+\end{document}
