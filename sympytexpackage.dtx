@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2009 by Tim Molteno <tim@physics.otago.ac.nz>
+% Copyright (C) 2009-2011 by Tim Molteno <tim@physics.otago.ac.nz>
 % Shamelessly copied from the excellent sympytex package by
 %
 % Copyright (C) 2008 by Dan Drake <ddrake@member.ams.org>
@@ -27,7 +27,7 @@
 %<latex>\NeedsTeXFormat{LaTeX2e}
 %<latex>\ProvidesPackage{sympytex}
 %<*latex>
-  [2009/05/05 v0.1 embedding Sympy into LaTeX documents]
+  [2011/08/16 v0.2 embedding Sympy into LaTeX documents]
 %</latex>
 %<*driver>
 \documentclass{ltxdoc}
@@ -136,9 +136,8 @@
 % Here is a lovely graph of the sine curve:
 %
 % \begin{sympyblock}
-% from sympy import *
-% x = Symbol('x')
-% \end{sympyblock}
+from sympy import *
+x = Symbol('x') \end{sympyblock}
 %
 % sympyplot{plot(sin(x), x, 0, 2*pi)}
 % \end{quote}
