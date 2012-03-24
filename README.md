@@ -4,7 +4,7 @@ computations, and (sometimes!) plots from the Matplotlib software suite
 
 ====================================================================
 
-==USING THE PACKAGE==
+##USING THE PACKAGE
 
 To use SympyTeX, you need the files
   sympytex.sty
@@ -15,7 +15,7 @@ the package (see below)
 
 ====================================================================
 
-==BUILDING THE PACKAGE==
+##BUILDING THE PACKAGE
 
 To build the SympyTeX package you will need to install some extra LaTeX
 packages (makecmds.sty)
@@ -41,7 +41,7 @@ pgf and tikz packages installed to typeset the figures.
 The file example.tex has, as you likely guessed, a bunch of examples
 showing you how this package works.
 
-==CREDITS==
+##CREDITS
 
 This works builds on a lot of work by others; in particular the work of
 Dan Drake <ddrake@member.ams.org> who created the sagetex package from which
