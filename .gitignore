@@ -1,0 +1,16 @@
+# Compiled source #
+###################
+*.aux
+*.log
+*.pdf
+*.pyc
+
+
+# OS generated files #
+######################
+.DS_Store*
+*~
+*.outc
+*.outcpp
+*.outf
+*.diff
