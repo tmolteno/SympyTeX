@@ -46,7 +46,7 @@ dirname       = None
 filename      = ""
 from string import strip
 def ttexprint(exp):
-  return strip(sympy.latex(exp, inline=True),'$')
+  return strip(sympy.latex(exp, mode='inline'),'$')
 def progress(t,linebreak=True):
   if linebreak:
     print(t)

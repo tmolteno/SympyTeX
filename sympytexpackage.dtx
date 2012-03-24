@@ -136,8 +136,8 @@
 % Here is a lovely graph of the sine curve:
 %
 % \begin{sympyblock}
-from sympy import *
-x = Symbol('x') \end{sympyblock}
+% from sympy import *
+% x = Symbol('x') \end{sympyblock}
 %
 % sympyplot{plot(sin(x), x, 0, 2*pi)}
 % \end{quote}
@@ -1086,7 +1086,7 @@ filename      = ""
 %    \begin{macrocode}
 from string import strip
 def ttexprint(exp):
-  return strip(sympy.latex(exp, inline=True),'$')
+  return strip(sympy.latex(exp, mode='inline'),'$')
 %    \end{macrocode}
 % \end{macro}
 %
