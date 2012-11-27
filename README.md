@@ -12,6 +12,10 @@ To use SympyTeX, you need the files
 If those haven't been extracted from the .dtx file, you'll need  build
 the package (see below)
 
+You also need to have installed the Sympy (Symbolic Python) package
+
+    aptitude install python-sympy
+
 
 ====================================================================
 
@@ -40,6 +44,15 @@ pgf and tikz packages installed to typeset the figures.
 
 The file example.tex has, as you likely guessed, a bunch of examples
 showing you how this package works.
+
+###The easy way
+
+Use the provided Makefile
+
+    make 
+    make test
+
+This will build the SympyTeX package, and also create a sample document.
 
 ##CREDITS
 

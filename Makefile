@@ -32,7 +32,7 @@ test:
 
 	
 clean:
-	rm -f sympytex.* example.s* rm sympytexpackage.dvi  sympytexpackage.aux
+	rm -f sympytex.* example.s* rm sympytexpackage.dvi  sympytexpackage.aux sympytexpackage.log
 
 dist:
 	tar -cf SympyTeX.tar sympytex.sty sympytex.py sympytexpackage.ins sympytexpackage.dtx example.tex README TODO Makefile

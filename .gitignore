@@ -5,6 +5,8 @@
 *.pdf
 *.pyc
 
+*.sout
+*.sympy
 
 # OS generated files #
 ######################
