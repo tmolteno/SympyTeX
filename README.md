@@ -1,26 +1,52 @@
 This is the SympyTeX package. It allows you to embed code, results of
 computations, and (sometimes!) plots from the Matplotlib software suite
-(http://www.sympy.org) into LaTeX documents.
+(http://www.sympy.org) into LaTeX documents. SympyTex was written by
+Tim Molteno tim@physics.otago.ac.nz
 
 ====================================================================
 
-##USING THE PACKAGE
+##Using SympyTex
 
-To use SympyTeX, you need the files
-  sympytex.sty
-  sympytex.py
-If those haven't been extracted from the .dtx file, you'll need  build
-the package (see below)
+To use SympyTeX, you need the files, sympytex.sty and sympytex.py. See below for instructions.
 
 You also need to have installed the Sympy (Symbolic Python) package
 
     aptitude install python-sympy
 
+Create a LaTeX document that uses the sympytex package.
+    \usepackage{sympytex}
+
+...
+
+    \begin{sympyblock}
+    x = sympy.Symbol('x')
+    h = sympy.integrate(1+x**4,x)
+    \end{sympyblock}
+
+    The integral of $1+x^4$ is also \sympy{sympy.integrate(1+x**4,x)}.
+    or you can use a sympy variable, $h = \sympy{h}$
+
+Now run
+    latex mydoc.tex
+    python mydoc.sympy
+    latex mydoc.tex
+
+See the include example.tex for more details.
 
 ====================================================================
 
-##BUILDING THE PACKAGE
+##Building the Package
 
+###The easy way
+
+Use the provided Makefile
+
+    make 
+    make test
+
+This will build the SympyTeX package, and also create a sample document.
+
+###The hard way
 To build the SympyTeX package you will need to install some extra LaTeX
 packages (makecmds.sty)
 
@@ -45,16 +71,8 @@ pgf and tikz packages installed to typeset the figures.
 The file example.tex has, as you likely guessed, a bunch of examples
 showing you how this package works.
 
-###The easy way
 
-Use the provided Makefile
-
-    make 
-    make test
-
-This will build the SympyTeX package, and also create a sample document.
-
-##CREDITS
+##Credits
 
 This works builds on a lot of work by others; in particular the work of
 Dan Drake <ddrake@member.ams.org> who created the sagetex package from which
