@@ -1,5 +1,5 @@
 This is the SympyTeX package. It allows you to embed code, results of
-computations, and (sometimes!) plots from the Matplotlib software suite
+computations, and (sometimes!) plots from Sympy (symbolic python)
 (http://www.sympy.org) into LaTeX documents. SympyTex was written by
 Tim Molteno tim@physics.otago.ac.nz
 
