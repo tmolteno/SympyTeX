@@ -1,7 +1,8 @@
 This is the SympyTeX package. It allows you to embed code, results of
 computations, and (sometimes!) plots from Sympy (symbolic python)
-(http://www.sympy.org) into LaTeX documents. SympyTex was written by
-Tim Molteno tim@physics.otago.ac.nz
+(http://www.sympy.org) into LaTeX documents.
+
+SympyTex was written by Tim Molteno (tim@physics.otago.ac.nz)
 
 ====================================================================
 
@@ -14,6 +15,7 @@ You also need to have installed the Sympy (Symbolic Python) package
     aptitude install python-sympy
 
 Create a LaTeX document that uses the sympytex package.
+
     \usepackage{sympytex}
 
 ...
@@ -26,7 +28,8 @@ Create a LaTeX document that uses the sympytex package.
     The integral of $1+x^4$ is also \sympy{sympy.integrate(1+x**4,x)}.
     or you can use a sympy variable, $h = \sympy{h}$
 
-Now run
+Now run:
+
     latex mydoc.tex
     python mydoc.sympy
     latex mydoc.tex
