@@ -1,3 +1,4 @@
 TODO:
 
 * Incorporate new Latex printing commands from sympy 0.7
+* Build a debian package.
