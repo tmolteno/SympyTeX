@@ -1,6 +1,7 @@
-This is the SympyTeX package. It allows you to embed code, results of
-computations, and (sometimes!) plots from Sympy (symbolic python)
-(http://www.sympy.org) into LaTeX documents.
+This is the SympyTeX package. This package allows you to embed symbolic calculations
+and their results into LaTeX documents. SympyTex uses sympy, the symbolic python engine (http://www.sympy.org), to manipulate
+symbolic expressions. Using SympyTeX, sympy code can be embedded into your document, either hidden from view, or as part of the document, and
+sympy expressions can be rendered into LaTeX expressions and included in your document output.
 
 SympyTex was written by Tim Molteno (tim@physics.otago.ac.nz)
 
@@ -77,9 +78,9 @@ showing you how this package works.
 
 ##Credits
 
-This works builds on a lot of work by others; in particular the work of
-Dan Drake <ddrake@member.ams.org> who created the sagetex package from which
-this is shamelessly copied see the "Credits" section
+SympyTeX builds on a lot of work by others; in particular the work of
+Dan Drake <ddrake@member.ams.org> who created the sagetex package on which
+sympytex is based. See the "Credits" section
 of the documentation for credits. The source code may be modified and
 distributed under the terms of the GPL, v2 or later; the documentation
 may be modified and distributed under a Creative Commons Attribution -
