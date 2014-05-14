@@ -9,7 +9,7 @@
 %% 
 %% This is a generated file.
 %% 
-%% Copyright (C) 2009 by Tim Molteno <tim@physics.otago.ac.nz>
+%% Copyright (C) 2009-2014 by Tim Molteno <tim@physics.otago.ac.nz>
 %% 
 %% This program is free software: you can redistribute it and/or modify it
 %% under the terms of the GNU General Public License as published by the
@@ -35,6 +35,7 @@ using the sympytex package. Keep it somewhere where Sage and Python can
 find it and it will automatically be imported.""")
   sys.exit()
 import sympy
+from sympy.plotting.plot import plot, Plot
 import os
 import os.path
 import hashlib
@@ -93,7 +94,10 @@ def plot(counter, p, format='notprovided', epsmagick=False, **kwargs):
   for fmt in formats:
     plotfilename = os.path.join(dirname, 'plot-%s.%s' % (counter, fmt))
     print('  plotting %s with args %s' % (plotfilename, kwargs))
-    p.savefig(filename=plotfilename, **kwargs)
+    if (isinstance(p, Plot)):
+      p.save(plotfilename)
+    else:
+      p.savefig(filename=plotfilename, **kwargs)
     if format != 'notprovided' and epsmagick is True:
       print('Calling Imagemagick to convert plot-%s.%s to EPS' % \
         (counter, format))
