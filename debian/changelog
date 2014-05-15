@@ -1,0 +1,5 @@
+latex-sympytex (1.0-1-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Tim Molteno <tim@physics.otago.ac.nz>  Tue, 16 Aug 2011 10:34:29 +1200

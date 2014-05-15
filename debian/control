@@ -1,0 +1,10 @@
+package: latex-sympytex
+Version: 1.0-1
+Section: tex
+Priority: optional
+Architecture: all
+Depends: texlive-latex-extra (>= 2009-10), python-sympy (>= 0.6.7)
+Maintainer: Tim Molteno <tim@physics.otago.ac.nz>
+Description: Use sympy inside LaTeX documents
+ The SympyTeX package allows you to embed the symbolic python package
+ Sympy (see http://www.sympy.org) and LaTeX. 
