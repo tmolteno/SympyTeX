@@ -1,7 +1,7 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2009-2014 by Tim Molteno <tim@physics.otago.ac.nz>
-% Based on the excellent sagetex package by
+% Copyright (C) 2009-2011 by Tim Molteno <tim@physics.otago.ac.nz>
+% Shamelessly copied from the excellent sympytex package by
 %
 % Copyright (C) 2008 by Dan Drake <ddrake@member.ams.org>
 % -------------------------------------------------------
@@ -27,7 +27,7 @@
 %<latex>\NeedsTeXFormat{LaTeX2e}
 %<latex>\ProvidesPackage{sympytex}
 %<*latex>
-  [2014/05/14 v0.3 embedding Sympy into LaTeX documents]
+  [2011/08/16 v0.2 embedding Sympy into LaTeX documents]
 %</latex>
 %<*driver>
 \documentclass{ltxdoc}
@@ -127,27 +127,20 @@
 % saving an EPS or PDF file, and doing the |\includegraphics|
 % business with the correct filename yourself. If you write this:
 % \begin{quote}
-%  |\begin{sympyblock}|\\
-%  |from sympy import *|\\
-%  |x = Symbol('x')|\\
-%  |p = plot(sin(x), x, 0, 2*pi, show=False)|\\
-%  |\end{sympyblock}|
-% \end{quote}
-% \begin{quote}
-% |Here is a lovely graph of the sine curve:|\\
+% |Here is a lovely graph of the sine curve:|
+%
 % |\sympyplot{plot(sin(x), x, 0, 2*pi)}|
 % \end{quote}
 % in your \LTX file, it produces
-
+% \begin{quote}
 % Here is a lovely graph of the sine curve:
 %
 % \begin{sympyblock}
 from sympy import *
-x = Symbol('x')
-p = plot(sin(x), x, 0, 2*pi, show=False)
-\end{sympyblock}
-% \sympyplot{p}
+x = Symbol('x') \end{sympyblock}
 %
+% sympyplot{plot(sin(x), x, 0, 2*pi)}
+% \end{quote}
 % Again, you need only worry about the logical/mathematical structure of
 % your document (``I need a plot of the sine curve over the interval
 % $[0, 2\pi]$ here''), while \ST{} takes care of the gritty details of
@@ -1077,7 +1070,6 @@ find it and it will automatically be imported.""")
 % they will all stay inside the |sympytex| namespace anyway.
 %    \begin{macrocode}
 import sympy
-from sympy.plotting.plot import plot, Plot
 import os
 import os.path
 import hashlib
@@ -1094,7 +1086,7 @@ filename      = ""
 %    \begin{macrocode}
 from string import strip
 def ttexprint(exp):
-  return strip(sympy.latex(exp, mode='inline'),'$')
+  return strip(sympy.latex(exp, inline=True),'$')
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1246,10 +1238,7 @@ def plot(counter, p, format='notprovided', epsmagick=False, **kwargs):
   for fmt in formats:
     plotfilename = os.path.join(dirname, 'plot-%s.%s' % (counter, fmt))
     print('  plotting %s with args %s' % (plotfilename, kwargs))
-    if (isinstance(p, Plot)):
-      p.save(plotfilename)
-    else:
-      p.savefig(filename=plotfilename, **kwargs)
+    p.savefig(filename=plotfilename, **kwargs)
 %    \end{macrocode}
 % If the user provides a format \emph{and} specifies the |imagemagick|
 % option, we try to convert the newly-created file into EPS format.

@@ -75,6 +75,10 @@ pgf and tikz packages installed to typeset the figures.
 The file example.tex has, as you likely guessed, a bunch of examples
 showing you how this package works.
 
+##Building a debian package
+This is work-in-progress. But you should be able to build one using
+
+    make deb
 
 ##Credits
 
