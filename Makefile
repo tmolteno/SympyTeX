@@ -22,6 +22,7 @@ all: clean
 docs:
 	rm -f *.sout
 	pdflatex sympytexpackage.dtx
+	mkindex sympytexpackage.idx
 	python sympytexpackage.sympy
 	pdflatex sympytexpackage.dtx
 
