@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2009-2011 by Tim Molteno <tim@physics.otago.ac.nz>
+% Copyright (C) 2009-2014 by Tim Molteno <tim@physics.otago.ac.nz>
 % Shamelessly copied from the excellent sympytex package by
 %
 % Copyright (C) 2008 by Dan Drake <ddrake@member.ams.org>
@@ -27,7 +27,7 @@
 %<latex>\NeedsTeXFormat{LaTeX2e}
 %<latex>\ProvidesPackage{sympytex}
 %<*latex>
-  [2011/08/16 v0.2 embedding Sympy into LaTeX documents]
+  [2014/05/16 v0.3 Added sympy plotting support. Code cleanup]
 %</latex>
 %<*driver>
 \documentclass{ltxdoc}
@@ -98,9 +98,9 @@
 %
 % The \ST package allows you to embed the symbolic python package
 % Sympy (see \url{http://www.sympy.org}) and
-% \LTX. (If you know how to write literate Haskell: the |\eval| command
-% corresponds to |\sympy|, and the |code| environment to the |sympyblock|
-% environment.) As a simple example, imagine in your document you are
+% \LTX. 
+%
+% As a simple example, imagine in your document you are
 % writing about how to count license plates with three letters and three
 % digits. With this package, you can write something like this:
 % \begin{quote}
@@ -127,16 +127,17 @@
 % saving an EPS or PDF file, and doing the |\includegraphics|
 % business with the correct filename yourself. If you write this:
 % \begin{quote}
-% |Here is a lovely graph of the sine curve:|
-%
-% |\sympyplot{plot(sin(x), x, 0, 2*pi)}|
+% |Here is a lovely graph of the sine curve:|\\
+% |\sympyplot{plot(sin(x), x, 0, 2*pi, show=False)}|
 % \end{quote}
 % in your \LTX file, it produces
+%
 % Here is a lovely graph of the sine curve:
 %
-% \begin{sympyblock} from sympy import *; x = Symbol('x') \end{sympyblock}
+% \begin{sympysilent} from sympy import *; x = Symbol('x') \end{sympysilent}
 %
-% \sympyplot{plot(sin(x), x, 0, 2*pi)}
+% \sympyplot{plot(sin(x), x, 0, 2*pi, show=False)}
+%
 % Again, you need only worry about the logical/mathematical structure of
 % your document (``I need a plot of the sine curve over the interval
 % $[0, 2\pi]$ here''), while \ST{} takes care of the gritty details of
@@ -146,34 +147,9 @@
 % convince you that \ST makes putting nice graphics into your document
 % very easy; let me turn around and warn you that using graphics
 % \emph{well} is not easy, and no \LTX package or Python script will
-% ever make it easy. What \ST does is make it easy to \emph{use MatPlotLib}
+% ever make it easy. What \ST does is make it easy to
 % to create graphics; it doesn't magically make your graphics good,
-% appropriate, or useful. (For instance, look at the sine plot above---I
-% would say that a truly lovely plot of the sine curve would not mark
-% integer points on the $x$-axis, but rather $\pi/2$, $\pi$, $3\pi/2$,
-% and $2\pi$.)
-%
-% Till Tantau has some good commentary on the use of graphics in
-% \href{http://www.ctan.org/tex-archive/graphics/pgf/}{section 6 of the
-% \textsc{pgf} manual}. You should always give careful thought and
-% attention to creating graphics for your document; I have in mind that
-% a good workflow for using \ST for plotting is something like this:
-%
-% \begin{enumerate}
-%   \item Figure out what sort of graphic you need to communicate your
-%   ideas or information.
-%   \item Fiddle around in Sympy until you get a graphics object and set
-%   of options that produce the graphic you need.
-%   \item Copy those commands and options into \ST commands in your
-%   \LTX document.
-% \end{enumerate}
-%
-% The \ST{} package's plotting capabilities don't help you find those
-% Sympy commands to make your lovely plot, but they do eliminate the need
-% to muck around with saving the result to a file, remembering the
-% filename, including it into your document, and so on. In
-% \autoref{s:usage}, we will see what what we can do with \ST.
-%
+% appropriate, or useful.
 % 
 % \section{Installation}
 %
@@ -254,11 +230,13 @@
 % you have defined the Sympy variable |foo| to be $12$ (using, say, the
 % |sympyblock| environment), then you can do something like this:
 % \begin{quote}
-% |The prime factorization of the current page times $17 + 1$  is|\\
-% |$\sympy{factorint(\thepage*17+1)}$|.
+% |The prime factorization of the current page number|\\
+% |times $2^{17} + 1$  is|\\
+% |$\sympy{factorint(\thepage*2**17+1)}$|.
 % \end{quote}
 % Here, I'll do just that right now: the prime factorization of the
-% current page times $17+1$ is $\sympy{factorint(\thepage * 17 + 1)}$.
+% current page number times $2^{17}+1$ is 
+% $\sympy{factorint(\thepage * 2**17 + 1)}$.
 %
 % The |\sympy| command doesn't automatically use math mode for its
 % output, so be sure to use dollar signs or a displayed math environment
