@@ -32,6 +32,9 @@ test:
 	python example.sympy
 	pdflatex example.tex
 
+ctan:	
+	cp README.md README
+	/home/tim/Downloads/ctan/scripts/ctanify/ctanify sympytexpackage.ins README sympytexpackage.pdf example.pdf
 	
 clean:
 	rm -f sympytex.* example.s* rm sympytexpackage.dvi  sympytexpackage.aux 
