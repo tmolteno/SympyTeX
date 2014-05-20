@@ -31,10 +31,11 @@ if __name__ == "__main__":
 It is not meant to be called directly.
 
 This file will be used by Sympy scripts generated from a LaTeX document
-using the sympytex package. Keep it somewhere where Sage and Python can
+using the sympytex package. Keep it somewhere where Sympy and Python can
 find it and it will automatically be imported.""")
   sys.exit()
 import sympy
+from sympy.plotting.plot import plot, Plot
 import os
 import os.path
 import hashlib
@@ -46,7 +47,7 @@ dirname       = None
 filename      = ""
 from string import strip
 def ttexprint(exp):
-  return strip(sympy.latex(exp, inline=True),'$')
+  return strip(sympy.latex(exp, mode='inline'),'$')
 def progress(t,linebreak=True):
   if linebreak:
     print(t)
@@ -93,7 +94,10 @@ def plot(counter, p, format='notprovided', epsmagick=False, **kwargs):
   for fmt in formats:
     plotfilename = os.path.join(dirname, 'plot-%s.%s' % (counter, fmt))
     print('  plotting %s with args %s' % (plotfilename, kwargs))
-    p.savefig(filename=plotfilename, **kwargs)
+    if (isinstance(p, Plot)):
+      p.save(plotfilename)
+    else:
+      p.savefig(filename=plotfilename, **kwargs)
     if format != 'notprovided' and epsmagick is True:
       print('Calling Imagemagick to convert plot-%s.%s to EPS' % \
         (counter, format))

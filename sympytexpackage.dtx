@@ -105,13 +105,13 @@
 % digits. With this package, you can write something like this:
 % \begin{quote}
 %  |There are $26$ choices for each letter, and $10$ choices for|\\
-%  |each digit, for a total of $26^3*10^3 = \sympy{26**3 * 10**3}$|\\
+%  |each digit, for a total of $26^3*10^3 = \sympy{(26**3 * 10**3)}$|\\
 %  |license plates.|
 % \end{quote}
 % and it will produce
 % \begin{quote}
 %   There are $26$ choices for each letter, and $10$ choices for each
-%   digit, for a total of $\sympy{(26**3) * 10**3}$ license plates.
+%   digit, for a total of $\sympy{((26**3) * 10**3)}$ license plates.
 % \end{quote}
 % The great thing is, you don't have to do the multiplication. Sympy does
 % it for you. This process mirrors one of the great aspects of
@@ -132,15 +132,11 @@
 % |\sympyplot{plot(sin(x), x, 0, 2*pi)}|
 % \end{quote}
 % in your \LTX file, it produces
-% \begin{quote}
 % Here is a lovely graph of the sine curve:
 %
-% \begin{sympyblock}
-from sympy import *
-x = Symbol('x') \end{sympyblock}
+% \begin{sympyblock} from sympy import *; x = Symbol('x') \end{sympyblock}
 %
-% sympyplot{plot(sin(x), x, 0, 2*pi)}
-% \end{quote}
+% \sympyplot{plot(sin(x), x, 0, 2*pi)}
 % Again, you need only worry about the logical/mathematical structure of
 % your document (``I need a plot of the sine curve over the interval
 % $[0, 2\pi]$ here''), while \ST{} takes care of the gritty details of
@@ -372,62 +368,6 @@ x = Symbol('x') \end{sympyblock}
 % Do not put any files into that directory that you do not want to get
 % automatically deleted.}}
 %
-% \subsubsection{3D plotting}
-%
-% Right now there is, to put it nicely, a bit of tension between the
-% sort of graphics formats supported by |latex| and |pdflatex|, and the
-% graphics formats supported by Sympy's 3D plotting systems.\footnote{We
-% use a typewriter font here to indicate the binaries which produce DVI
-% and PDF files, respectively, as opposed to ``\LTX'' which refers to
-% the entire typesetting system.} \LTX is happiest, and produces the
-% best output, with EPS and PDF files, which are vector formats.
-% Tachyon, Sympy's 3D plotting system, produces bitmap formats like BMP
-% and PNG.
-%
-% Because of this, when producing 3D plots with |\sympyplot|,
-% \emph{you must specify a file format}. The PNG format is compressed
-% and lossless and is by far the best choice, so use that whenever
-% possible. (Right now, it is always possible.) If you do not specify a
-% file format, or specify one that Tachyon does not understand, it will
-% produce files in the Targa format with an incorrect extension and \LTX
-% (both |latex| and |pdflatex|) will be profoundly confused. Don't do
-% that.
-% 
-% Since |latex| does not support PNGs, when using 3D plotting (and
-% therefore a bitmap format like PNG), \ST will \emph{always} issue a
-% warning about incompatible graphics if you use |latex|, provided
-% you've processed the |.sympy| file and the PNG file exists. (Running
-% |pdflatex| on the same file will work, since PDF files can include PNG
-% files.) 
-%
-% \paragraph{The imagemagick option} As a response to the above issue,
-% the \ST package has one option: |imagemagick|. If you specify this
-% option in the preamble of your document with the usual
-% ``|\usepackage[imagemagick]{sympytex}|'', then when you are compiling
-% your document using |latex|, any |\sympyplot| command which requests a
-% non-default format will cause the \ST Python script to convert the
-% resulting file to EPS using the Imagemagick |convert| utility. It does
-% this by executing ``|convert filename.EXT filename.eps|'' in a
-% subshell. It doesn't add any options, check to see if the |convert|
-% command exists or belongs to Imagemagick---it just runs the command.
-%
-% The resulting EPS files are not very high quality, but they will work.
-% This option is not intended to produce good graphics, but to allow you
-% to see your graphics when you use |latex| and DVI files while writing
-% your document.
-%
-% \paragraph{But that's not good enough!} \label{s:notgoodenough}
-% The |\sympyplot| command tries to be both flexible and easy to use, but
-% if you are just not happy with it, you can always do things manually:
-% inside a |sympysilent| environment (see the next section) you could do
-% \begin{quote}
-%   |your special commands|\\
-%   |x = your graphics object|\\
-%   |x.save(filename=myspecialfile.ext, options, etc)|
-% \end{quote}
-% and then, in your source file, do your own |\includegraphics| command.
-% The \ST package gives you full access to Sympy and Python and doesn't
-% turn off anything in \LTX, so you can always do things manually.
 %
 % \subsection{Verbatim-like environments}
 % \label{s:codeblockenv}
@@ -1060,16 +1000,17 @@ if __name__ == "__main__":
 It is not meant to be called directly.
 
 This file will be used by Sympy scripts generated from a LaTeX document
-using the sympytex package. Keep it somewhere where Sage and Python can
+using the sympytex package. Keep it somewhere where Sympy and Python can
 find it and it will automatically be imported.""")
   sys.exit()
 %    \end{macrocode}
 % We start with some imports and definitions of our global variables.
-% This is a relatively specialized use of Sage, so using global
+% This is a relatively specialized use of Sympy, so using global
 % variables isn't a bad idea. Plus I think when we import this module,
 % they will all stay inside the |sympytex| namespace anyway.
 %    \begin{macrocode}
 import sympy
+from sympy.plotting.plot import plot, Plot
 import os
 import os.path
 import hashlib
@@ -1086,7 +1027,7 @@ filename      = ""
 %    \begin{macrocode}
 from string import strip
 def ttexprint(exp):
-  return strip(sympy.latex(exp, inline=True),'$')
+  return strip(sympy.latex(exp, mode='inline'),'$')
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1107,8 +1048,8 @@ def progress(t,linebreak=True):
 % This function opens a |.sout.tmp| file and writes all our output to
 % that. Then, when we're done, we move that to |.sout|. The
 % ``autogenerated'' line is basically the same as the lines that get put
-% at the top of preparsed Sage files; we are automatically generating a
-% file with Sage, so it seems reasonable to add it.
+% at the top of preparsed sympy files; we are automatically generating a
+% file with sympy, so it seems reasonable to add it.
 %    \begin{macrocode}
 def openout(f):
   global filename
@@ -1238,7 +1179,10 @@ def plot(counter, p, format='notprovided', epsmagick=False, **kwargs):
   for fmt in formats:
     plotfilename = os.path.join(dirname, 'plot-%s.%s' % (counter, fmt))
     print('  plotting %s with args %s' % (plotfilename, kwargs))
-    p.savefig(filename=plotfilename, **kwargs)
+    if (isinstance(p, Plot)):
+      p.save(plotfilename)
+    else:
+      p.savefig(filename=plotfilename, **kwargs)
 %    \end{macrocode}
 % If the user provides a format \emph{and} specifies the |imagemagick|
 % option, we try to convert the newly-created file into EPS format.

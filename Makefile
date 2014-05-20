@@ -20,6 +20,7 @@ all: clean
 	latex sympytexpackage.ins
 
 docs:
+	rm -f *.sout
 	pdflatex sympytexpackage.dtx
 	python sympytexpackage.sympy
 	pdflatex sympytexpackage.dtx
