@@ -1,4 +1,4 @@
-# Copyright (C) 2009-2011 by Tim Molteno <tim@physics.otago.ac.nz>
+# Copyright (C) 2009-2014 by Tim Molteno <tim@physics.otago.ac.nz>
 #
 # This file may be redistributed and/or
 # modified under the terms of the GNU General Public License as
@@ -15,6 +15,13 @@
 # 
 # Requires makecmds.sty, for Debian-based distributions try
 #      aptitude install texlive-latex-extra python-matplotlib
+#
+# Python3.4 support.
+#
+#	aptitude install python3.4 python3.4-matplotlib
+#
+#  Now install sympy from source (or other method)
+PYTHON=python3.4
 
 all: clean
 	latex sympytexpackage.ins
@@ -23,13 +30,13 @@ docs:
 	rm -f *.sout
 	pdflatex sympytexpackage.dtx
 	mkindex sympytexpackage.idx
-	python sympytexpackage.sympy
+	${PYTHON} sympytexpackage.sympy
 	pdflatex sympytexpackage.dtx
 
 # This builds the example document. The example uses matplotlib (aptitude install python-matplotlib)
 test:
 	pdflatex example.tex
-	python example.sympy
+	${PYTHON} example.sympy
 	pdflatex example.tex
 
 ctan:	

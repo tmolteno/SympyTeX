@@ -45,9 +45,9 @@ import shutil
 initplot_done = False
 dirname       = None
 filename      = ""
-from string import strip
 def ttexprint(exp):
-  return strip(sympy.latex(exp, mode='inline'),'$')
+  st = sympy.latex(exp, mode='inline')
+  return st.strip('$')
 def progress(t,linebreak=True):
   if linebreak:
     print(t)

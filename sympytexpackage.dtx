@@ -27,7 +27,7 @@
 %<latex>\NeedsTeXFormat{LaTeX2e}
 %<latex>\ProvidesPackage{sympytex}
 %<*latex>
-  [2014/05/16 v0.3 Added sympy plotting support. Code cleanup]
+  [2014/10/14 v0.3.1 Preliminary python3 support]
 %</latex>
 %<*driver>
 \documentclass{ltxdoc}
@@ -1006,9 +1006,9 @@ filename      = ""
 % This function gets around the insertion of begin/end math symbols that
 % sympy puts into its latex output
 %    \begin{macrocode}
-from string import strip
 def ttexprint(exp):
-  return strip(sympy.latex(exp, mode='inline'),'$')
+  st = sympy.latex(exp, mode='inline')
+  return st.strip('$')
 %    \end{macrocode}
 % \end{macro}
 %
