@@ -3,13 +3,21 @@ and their results into LaTeX documents. SympyTex uses sympy, the symbolic python
 symbolic expressions. Using SympyTeX, sympy code can be embedded into your document, either hidden from view, or as part of the document, and
 sympy expressions can be rendered into LaTeX expressions and included in your document output.
 
-SympyTex was written by Tim Molteno (tim@physics.otago.ac.nz)
+## Citing SympyTeX
+
+SympyTex was written by Tim Molteno (tim@physics.otago.ac.nz). The best way to cite
+sympytex is:
+
+
+Timothy C.A. Molteno, ''SympyTeX: Embedding symbolic computation into LaTeX
+documents'', Electronics Technical Reports No. 2014-1, ISSN 1172-496X, May 2014.
 
 ====================================================================
 
-##Using SympyTex
+## Using SympyTex
 
-To use SympyTeX, you need the files, sympytex.sty and sympytex.py. See below for instructions.
+To use SympyTeX, you need the files, sympytex.sty and sympytex.py. These can be either in the current
+directory, or somewhere sensible on your system. See below for instructions on how to build these files.
 
 You also need to have installed the Sympy (Symbolic Python) package
 
@@ -39,9 +47,9 @@ See the include example.tex for more details.
 
 ====================================================================
 
-##Building the Package
+## Building the Package
 
-###The easy way
+### The easy way
 
 Use the provided Makefile
 
@@ -50,7 +58,7 @@ Use the provided Makefile
 
 This will build the SympyTeX package, and also create a sample document.
 
-###The hard way
+### The hard way
 To build the SympyTeX package you will need to install some extra LaTeX
 packages (makecmds.sty)
 
@@ -75,12 +83,12 @@ pgf and tikz packages installed to typeset the figures.
 The file example.tex has, as you likely guessed, a bunch of examples
 showing you how this package works.
 
-##Building a debian package
+## Building a debian package
 This is work-in-progress. But you should be able to build one using
 
     make deb
 
-##Credits
+## Credits
 
 SympyTeX builds on a lot of work by others; in particular the work of
 Dan Drake <ddrake@member.ams.org> who created the sagetex package on which
