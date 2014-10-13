@@ -9,7 +9,7 @@
 %% 
 %% This is a generated file.
 %% 
-%% Copyright (C) 2009 by Tim Molteno <tim@physics.otago.ac.nz>
+%% Copyright (C) 2009-2014 by Tim Molteno <tim@physics.otago.ac.nz>
 %% 
 %% This program is free software: you can redistribute it and/or modify it
 %% under the terms of the GNU General Public License as published by the
