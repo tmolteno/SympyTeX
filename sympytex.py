@@ -122,7 +122,7 @@ def endofdoc():
   m = hashlib.md5()
   for line in sympyf:
     if line[0:15] != ' sympytex.goboom':
-      m.update(line)
+      m.update(line.encode('utf-8'))
   s = '%' + m.hexdigest() + '% md5sum of .sympy file (minus "goboom" \
 lines) that produced this\n'
   _file_.write(s)
