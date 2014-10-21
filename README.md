@@ -23,11 +23,11 @@ You also need to have installed the Sympy (Symbolic Python) package
 
     aptitude install python-sympy
 
-Create a LaTeX document that uses the sympytex package.
+Create a LaTeX document (say mydoc.tex) that uses the sympytex package.
 
     \usepackage{sympytex}
 
-...
+    ...
 
     \begin{sympyblock}
     x = sympy.Symbol('x')
