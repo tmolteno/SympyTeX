@@ -4,6 +4,12 @@
 *.log
 *.pdf
 *.pyc
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.out
 
 *.sout
 *.sympy
@@ -12,7 +18,4 @@
 ######################
 .DS_Store*
 *~
-*.outc
-*.outcpp
-*.outf
-*.diff
+sympy-plots-for*
