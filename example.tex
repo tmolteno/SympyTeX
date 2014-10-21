@@ -1,4 +1,4 @@
-% Copyright (C) 2009-2011 by Tim Molteno <tim@physics.otago.ac.nz>
+% Copyright (C) 2009-2014 by Tim Molteno <tim@physics.otago.ac.nz>
 %
 % This file may be redistributed and/or
 % modified under the terms of the GNU General Public License as
@@ -42,11 +42,13 @@ You can write a block, and then use the variables defined later in your code!
 x = sympy.Symbol('x')
 h = sympy.integrate(1+x,x)
 \end{sympyblock}
-The variable $h$, how can be called using {\verb \sympy{h} }, and you will get $h = \sympy{h}$. Similarly, the integral of $1+x^4$ is $\sympy{sympy.integrate(1+x**4,x)}$.
+The variable $h$, how can be called using {\verb \sympy{h} }, and you will get $h = \sympy{h}$. 
+Similarly, the integral of $1+x^4$ is $\sympy{sympy.integrate(1+x**4,x)}$.
 
 \section{sympyplain}
 
-The sympyplain command places the sympy output as text (rather than LaTeX formatted math stuff). This is really useful if the output is huge as formulae don't line wrap.
+The sympyplain command places the sympy output as text (rather than LaTeX formatted math stuff). 
+This is really useful if the output is huge as formulae don't line wrap.
 
 The integral of $1+x^4$ is also \sympyplain{sympy.integrate(1+x**4,x)}.
 

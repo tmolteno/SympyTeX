@@ -213,7 +213,7 @@
 % \noindent takes whatever Sympy code you give it, runs Sympy's |latex|
 % function on it, and puts the result into your document. 
 %
-% For example, if you do |\sympy{matrix([[1, 2], [3,4]])^2}|, then that
+% For example, if you do |\sympy{Matrix([[1, 2], [3,4]])**2}|, then that
 % macro will get replaced by
 % \begin{quote}
 % |\left(\begin{array}{rr}|\\
@@ -224,7 +224,7 @@
 % in your document---that \LTX code is exactly exactly what you get
 % from doing
 % \begin{center}
-% |latex(matrix([[1, 2], [3,4]])^2)|
+% |latex(Matrix([[1, 2], [3,4]])**2)|
 % \end{center}
 % in Sympy.
 %
