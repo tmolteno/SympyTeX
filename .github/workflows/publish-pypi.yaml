@@ -1,0 +1,57 @@
+# Publish the sympytex package to PyPI using Trusted Publishing (OIDC).
+#
+# No PyPI API token is required; instead, PyPI must have a Trusted
+# Publisher configured for this repository that matches all of:
+#   - owner/repository:  tmolteno/SympyTeX
+#   - workflow filename: publish-pypi.yaml
+#   - environment:       pypi
+# Configure it at https://pypi.org/manage/project/sympytex/settings/publishing/
+# (for the first release, use PyPI's "pending publisher" form, since the
+# project does not exist until the first upload).
+#
+# Runs automatically when a version tag (v*.*.*) is pushed, or manually
+# from the Actions tab (workflow_dispatch).
+
+name: Publish to PyPI
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    name: Build and publish to PyPI
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      # Required for Trusted Publishing (OIDC); there is no API token.
+      id-token: write
+      contents: read
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Verify the package is in sync with sympytexpackage.dtx
+        run: python3 tools/sync_package.py --check
+
+      - name: Install build tools
+        run: python3 -m pip install --upgrade pip build twine
+
+      - name: Build sdist and wheel
+        run: python3 -m build
+
+      - name: Check distribution metadata
+        run: python3 -m twine check dist/*
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          attestations: true
