@@ -14,37 +14,45 @@
 # and the files sympytex.sty and sympytex.py will be created
 # 
 # Requires makecmds.sty, for Debian-based distributions try
-#      aptitude install texlive-latex-extra python-matplotlib
+#      aptitude install texlive-latex-extra python3-matplotlib
 #
-# Python3.4 support.
+# SympyTeX requires Python 3, with sympy and matplotlib installed:
 #
-#	aptitude install python3.4 python3.4-matplotlib
-#
-#  Now install sympy from source (or other method)
-PYTHON=python3.4
+#	aptitude install python3 python3-sympy python3-matplotlib
+PYTHON=python3
 
 all: clean
 	latex sympytexpackage.ins
 
 docs:
 	rm -f *.sout
-	pdflatex sympytexpackage.dtx
+	pdflatex -interaction=nonstopmode sympytexpackage.dtx
 	mkindex sympytexpackage.idx
 	${PYTHON} sympytexpackage.sympy
-	pdflatex sympytexpackage.dtx
+	pdflatex -interaction=nonstopmode sympytexpackage.dtx
 
-# This builds the example document. The example uses matplotlib (aptitude install python-matplotlib)
+# This builds the example document. The example uses matplotlib (aptitude install python3-matplotlib)
 test:
-	pdflatex example.tex
+	pdflatex -interaction=nonstopmode example.tex
 	${PYTHON} example.sympy
-	pdflatex example.tex
+	pdflatex -interaction=nonstopmode example.tex
+
+# Copy the docstrip-generated files into the installable Python package
+# in src/sympytex/. Run this after every change to sympytexpackage.dtx.
+sync-package: all
+	${PYTHON} tools/sync_package.py
+
+# Build the PyPI sdist and wheel (requires: pip install build).
+package: sync-package
+	${PYTHON} -m build
 
 ctan:	
 	cp README.md README
 	/home/tim/Downloads/ctan/scripts/ctanify/ctanify sympytexpackage.ins README sympytexpackage.pdf example.pdf
 	
 clean:
-	rm -f sympytex.* example.s* rm sympytexpackage.dvi  sympytexpackage.aux 
+	rm -f sympytex.* example.s* sympytexpackage.dvi sympytexpackage.aux
+	rm -rf sympy-plots-for-*
 
 dist:
 	tar -cf SympyTeX.tar sympytex.sty sympytex.py sympytexpackage.ins sympytexpackage.dtx example.tex README TODO Makefile

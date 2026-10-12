@@ -19,3 +19,11 @@
 .DS_Store*
 *~
 sympy-plots-for*
+# docstrip history file
+*.hd
+
+# Python packaging #
+####################
+build/
+dist/
+src/sympytex.egg-info/

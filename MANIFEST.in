@@ -1,0 +1,10 @@
+# The LaTeX sources and examples travel with the sdist so the package
+# can be rebuilt from its dtx source of truth.
+include sympytexpackage.dtx
+include sympytexpackage.ins
+include sympytex.sty
+include sympytex.py
+include Makefile
+include TODO
+include example.tex
+include gfplot_minimal.tex

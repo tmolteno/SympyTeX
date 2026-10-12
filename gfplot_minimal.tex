@@ -21,8 +21,8 @@ from numpy import linspace, sin
 time = linspace(0,6,200)
 values = sin(3*time)
 coordinates = ""
-for point in zip(time, values):
-  coordinates = coordinates + str(point)
+for t, v in zip(time, values):
+  coordinates = coordinates + '({:.5f}, {:.5f}) '.format(t, v)
 
 pgfplot = r"""
 \begin{tikzpicture}
@@ -34,7 +34,7 @@ pgfplot = r"""
 
 \end{sympyblock}
 
-After calculating the datapoints we insert them into the string {\verb pgfplot } and output the string into our LaTeX document using {\verb \sympyplain{pgfplot} } in a figure environment.
+After calculating the datapoints we insert them into the string {\verb!pgfplot!} and output the string into our LaTeX document using {\verb!\sympyplain{pgfplot}!} in a figure environment.
 \begin{figure}
   \centering
   \sympyplain{pgfplot}

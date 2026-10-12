@@ -25,7 +25,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{sympytex}
-  [2014/10/14 v0.3.1 Preliminary python3 support]
+  [2026/10/13 v0.3.3 Full python3 support]
 \RequirePackage{verbatim}
 \RequirePackage{graphicx}
 \RequirePackage{makecmds}
@@ -37,6 +37,7 @@
 \setcounter{ST@plot}{0}
 \newlength{\sympytexindent}
 \setlength{\sympytexindent}{5ex}
+\newcommand{\ST@version}{0.3.3}
 \newcommand{\ST@epsim}{False}
 \DeclareOption{imagemagick}{\renewcommand{\ST@epsim}{True}}
 \ProcessOptions\relax
@@ -52,6 +53,7 @@
 \fi
 \ST@wsf{import sympy}
 \ST@wsf{import sympytex}
+\ST@wsf{sympytex.checkversion('\ST@version')}%
 \ST@wsf{sympytex.openout('\jobname')}
 \InputIfFileExists{\jobname.sout}{}{}
 \newcommand{\sympy}[1]{%
@@ -142,7 +144,7 @@
 \@ifundefined{ST@rerun}{}%
 {\PackageWarningNoLine{sympytex}{There were undefined Sympy formulas
 and/or plots}%
-\PackageWarningNoLine{sympytex}{Run python on \jobname.sympy, and then run
+\PackageWarningNoLine{sympytex}{Run python3 on \jobname.sympy, and then run
 LaTeX on \jobname.tex again}}}
 \endinput
 %%

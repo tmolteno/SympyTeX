@@ -21,7 +21,7 @@ directory, or somewhere sensible on your system. See below for instructions on h
 
 You also need to have installed the Sympy (Symbolic Python) package
 
-    aptitude install python-sympy
+    aptitude install python3-sympy
 
 Create a LaTeX document (say mydoc.tex) that uses the sympytex package.
 
@@ -40,10 +40,41 @@ Create a LaTeX document (say mydoc.tex) that uses the sympytex package.
 Now run:
 
     latex mydoc.tex
-    python mydoc.sympy
+    python3 mydoc.sympy
     latex mydoc.tex
 
 See the include example.tex for more details.
+
+====================================================================
+
+## Installing from PyPI
+
+The Python half of SympyTeX is published on PyPI, so the `sympytex` module
+imported by the generated `.sympy` files can be installed with pip:
+
+    pip install sympytex
+
+This installs the module and a small `sympytex` command. The command can
+put `sympytex.sty` where LaTeX finds it, and run the sympy pass:
+
+    sympytex install             # copy sympytex.sty into TEXMFHOME
+    latex mydoc.tex
+    sympytex run mydoc.sympy     # same as: python3 mydoc.sympy
+    latex mydoc.tex
+
+If your documents plot matplotlib figures, install the plotting extra:
+
+    pip install "sympytex[plots]"
+
+The style file and the Python module carry their versions with them;
+if the two halves come from different sources and disagree, the sympy
+pass refuses to run and tells you which one to update (set the
+`SYMPYTEX_IGNORE_VERSION` environment variable to override).
+
+For developers, the package lives in `src/sympytex/` and is generated
+from this repository's dtx file (the single source of truth): run
+`make sync-package` after editing `sympytexpackage.dtx`, and
+`make package` to build the sdist and wheel.
 
 ====================================================================
 
@@ -73,7 +104,7 @@ distribution of SympyTeX, you will need to build the documentation
 yourself. To do that:
 
   1. Run `latex sympytexpackage.dtx'
-  2. Run `python sympytexpackage.sympy'
+  2. Run `python3 sympytexpackage.sympy'
   3. Run the indexing commands that the .ins file told you about.
   4. Run `latex sympytexpackage.dtx' again.
 

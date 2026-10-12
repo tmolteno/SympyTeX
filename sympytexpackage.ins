@@ -57,10 +57,14 @@ with this program.  If not, see <http://www.gnu.org/licenses/>
 % properly commented Python file with the same preamble as the .sty
 % file.
 
-\edef\defaultpreamble{"""^^J%
+% We use a raw string (r""") here because docstrip appends \endinput to
+% the file inside the closing quote block; a plain string would make
+% Python 3 emit a SyntaxWarning for the invalid "\e" escape sequence.
+
+\edef\defaultpreamble{r"""^^J%
           \defaultpreamble^^J%
           """}
-\edef\defaultpostamble{"""^^J%
+\edef\defaultpostamble{r"""^^J%
           \defaultpostamble^^J%
           """}
 

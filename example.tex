@@ -24,10 +24,10 @@
 
 \section{Important! Setting up Your \LaTeX environment}
 
-To use SympyTeX, you have to run latex (or pdflatex) on your file, then python, and then latex again. 
+To use SympyTeX, you have to run latex (or pdflatex) on your file, then python3, and then latex again. 
 \begin{verbatim}
  latex example.tex
- python example.sympy
+ python3 example.sympy
  latex example.tex
 \end{verbatim}
 If you use Kile, or another \LaTeX environment, you can set it up to automatically do the
@@ -42,7 +42,7 @@ You can write a block, and then use the variables defined later in your code!
 x = sympy.Symbol('x')
 h = sympy.integrate(1+x,x)
 \end{sympyblock}
-The variable $h$, how can be called using {\verb \sympy{h} }, and you will get $h = \sympy{h}$. 
+The variable $h$, can now be called using {\verb!\sympy{h}!}, and you will get $h = \sympy{h}$. 
 Similarly, the integral of $1+x^4$ is $\sympy{sympy.integrate(1+x**4,x)}$.
 
 \section{sympyplain}
